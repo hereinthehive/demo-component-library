@@ -1,0 +1,31 @@
+/**
+ * Card Styles
+ */
+
+.card {
+  /* Base styles */
+  box-sizing: border-box;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  .card {
+    /* Mobile adjustments */
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .card {
+    /* High contrast adjustments */
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .card {
+    /* Disable animations */
+    animation: none;
+    transition: none;
+  }
+}

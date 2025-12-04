@@ -1,0 +1,51 @@
+/**
+ * TestBlock Styles
+ *
+ * Matches Figma design from Component Library / Test Block
+ * - Default: #3e66d5 (blue)
+ * - Inactive: #c8c3c3 (grey)
+ * - Size: 263×263px
+ */
+
+.testBlock {
+  /* Base styles */
+  box-sizing: border-box;
+  width: 263px;
+  height: 263px;
+
+  /* Default state - blue */
+  background-color: #3e66d5;
+
+  /* Smooth transitions */
+  transition: background-color 0.2s ease;
+}
+
+/* Inactive state - grey */
+.inactive {
+  background-color: #c8c3c3;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  .testBlock {
+    /* Scale down on mobile */
+    width: 200px;
+    height: 200px;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .testBlock {
+    /* Add border for better visibility in high contrast */
+    border: 2px solid currentColor;
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .testBlock {
+    /* Disable transition animations */
+    transition: none;
+  }
+}
