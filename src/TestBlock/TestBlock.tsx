@@ -11,7 +11,7 @@
  */
 
 import React from "react";
-import styles from "./TestBlock.module.css";
+import styles from "./TestBlock.module.scss";
 
 export interface TestBlockProps {
   /**
