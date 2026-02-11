@@ -1,4 +1,5 @@
 import React from "react";
+import styles from "./InputField.module.scss";
 
 export interface InputFieldProps {
   id: string;
@@ -32,11 +33,11 @@ export const InputField: React.FC<InputFieldProps> = ({
   className,
 }) => {
   return (
-    <div className={className}>
+    <div className={`${styles.inputField} ${className || ""}`.trim()}>
       {label && (
-        <label htmlFor={id}>
+        <label htmlFor={id} className={styles.label}>
           {label}
-          {required && <span aria-label="required">*</span>}
+          {required && <span className={styles.required} aria-label="required">*</span>}
         </label>
       )}
       <input
@@ -52,9 +53,10 @@ export const InputField: React.FC<InputFieldProps> = ({
         onFocus={onFocus}
         aria-invalid={error ? "true" : "false"}
         aria-describedby={error ? `${id}-error` : undefined}
+        className={styles.input}
       />
       {error && (
-        <div id={`${id}-error`} role="alert">
+        <div id={`${id}-error`} role="alert" className={styles.error}>
           {error}
         </div>
       )}

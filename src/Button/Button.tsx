@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "./Button.module.css";
+import { css, keyframes } from "@emotion/css";
 
 export interface ButtonProps {
   /**
@@ -56,6 +56,47 @@ export interface ButtonProps {
    */
   style?: React.CSSProperties;
 }
+
+const spin = keyframes`
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+`;
+
+const buttonBaseStyle = css`
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-2);
+  border: none;
+  border-radius: var(--button-border-radius-default);
+  font-weight: var(--font-weight-medium);
+  transition: all var(--transition-base);
+  font-family: var(--font-family-base);
+  outline: none;
+
+  &:disabled {
+    cursor: not-allowed;
+  }
+
+  &:focus-visible {
+    outline: var(--focus-ring-width) solid var(--color-border-focus);
+    outline-offset: var(--focus-ring-offset);
+  }
+`;
+
+const spinnerStyle = css`
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  border: var(--button-border-width-ghost) solid currentColor;
+  border-right-color: transparent;
+  border-radius: 9999px;
+  animation: ${spin} 0.6s linear infinite;
+`;
 
 /**
  * Primary interactive element for user actions.
@@ -200,8 +241,8 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     };
 
     const combinedClassName = className
-      ? `${styles.button} ${className}`
-      : styles.button;
+      ? `${buttonBaseStyle} ${className}`
+      : buttonBaseStyle;
 
     return (
       <button
@@ -223,15 +264,7 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
           <span
             role="status"
             aria-label="Loading"
-            style={{
-              display: "inline-block",
-              width: "1em",
-              height: "1em",
-              border: "var(--button-border-width-ghost) solid currentColor",
-              borderRightColor: "transparent",
-              borderRadius: "9999px",
-              animation: "spin 0.6s linear infinite",
-            }}
+            className={spinnerStyle}
           />
         )}
         {!loading && icon && <span aria-hidden="true">{icon}</span>}
